@@ -11,6 +11,7 @@ public class EmployeePayrollService {
 
     private static List<EmployeePayrollData> employeePayrollList;
 
+    ///Parameterized constructor
     public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList) {
         super();
         this.employeePayrollList = employeePayrollList;
@@ -20,7 +21,7 @@ public class EmployeePayrollService {
         super();
         this.employeePayrollList = new ArrayList<>();
     }
-
+///reading the data from console
     private void readDataConsole(Scanner consoleInputReader) {
         System.out.println("Enter Employee ID: ");
         int id = consoleInputReader.nextInt();
@@ -30,7 +31,7 @@ public class EmployeePayrollService {
         double salary = consoleInputReader.nextDouble();
         employeePayrollList.add(new EmployeePayrollData(id, name, salary));
     }
-
+///write the data into file
     public void writeData(IOService ioservice) {
         if (ioservice.equals(IOService.CONSOLE_IO))
             System.out.println("Writing to console\n" + employeePayrollList);
