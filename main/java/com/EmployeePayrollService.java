@@ -35,13 +35,20 @@ public class EmployeePayrollService {
     public void writeData(IOService ioservice) {
         if (ioservice.equals(IOService.CONSOLE_IO))
             System.out.println("Writing to console\n" + employeePayrollList);
+        else if (ioservice.equals(IOService.FILE_IO))
+            new EmployeePayrollFileIOService().writeData(employeePayrollList);
+    }
+////counting files
+    public long countEntries(IOService ioservice){
+        if (ioservice.equals(IOService.CONSOLE_IO))
+            return employeePayrollList.size();
+        else if (ioservice.equals(IOService.FILE_IO))
+            return new EmployeePayrollFileIOService().countEntries();
+        return 0;
     }
 
-    public static void main(String args[]) {
-        ArrayList<EmployeePayrollData> employeePayrollList = new ArrayList<>();
-        EmployeePayrollService s = new EmployeePayrollService(employeePayrollList);
-        Scanner consoleInputScanner = new Scanner(System.in);
-        s.readDataConsole(consoleInputScanner);
-        s.writeData(IOService.CONSOLE_IO);
-    }
+
+
+
+
 }
